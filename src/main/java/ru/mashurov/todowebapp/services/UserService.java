@@ -11,7 +11,7 @@ public class UserService {
     private final UserRepo userRepo;
 
     public User findByUsername(String username) {
-        return userRepo.findByUsername(username).orElseThrow(RuntimeException::new);
+        return userRepo.findByUsername(username).orElse(null);
     }
 
 

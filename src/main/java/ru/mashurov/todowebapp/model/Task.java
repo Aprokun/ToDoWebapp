@@ -3,7 +3,6 @@ package ru.mashurov.todowebapp.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 
@@ -18,7 +17,7 @@ public class Task {
 
     private String name;
 
-    private String decription;
+    private String description;
 
     @ManyToOne
     private User user;

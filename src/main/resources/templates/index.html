@@ -5,6 +5,13 @@
     <title>My Tasks</title>
 </head>
 <body>
-
+    <div>
+        <table>
+            <tr th:each="task : ${userTasks}">
+                <td th:text="${task.getName()}"></td>
+                <td th:text="${task.getDescription()}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
