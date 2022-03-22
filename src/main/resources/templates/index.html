@@ -1,17 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>My Tasks</title>
+
+    <link href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet"/>
 </head>
 <body>
-    <div>
-        <table>
-            <tr th:each="task : ${userTasks}">
-                <td th:text="${task.getName()}"></td>
-                <td th:text="${task.getDescription()}"></td>
-            </tr>
-        </table>
+<nav class="navbar bg-dark">
+    <div class="container align-items-baseline">
+        <a class="navbar-brand" href="#">ToDo</a>
+        <ul class="nav me-auto mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="#">My tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Other</a>
+            </li>
+
+            <form class="d-flex" th:action="@{/logout}">
+                <button type="submit" class="btn btn-secondary" value="Log out">Log out</button>
+            </form>
+        </ul>
     </div>
+</nav>
+
+<h2 class="container mt-5">My tasks</h2>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <th scope="row">1</th>
+        <td th:text="${task.getName()}">test</td>
+        <td th:text="${task.getDescription()}">test</td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="../static/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

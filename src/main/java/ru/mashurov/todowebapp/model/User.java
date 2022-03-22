@@ -27,4 +27,5 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Task> tasks;
+
 }
