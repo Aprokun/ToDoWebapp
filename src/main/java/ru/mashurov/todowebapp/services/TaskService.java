@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.mashurov.todowebapp.model.Task;
 import ru.mashurov.todowebapp.repositories.TaskRepo;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,4 +17,9 @@ public class TaskService {
     public List<Task> getAllByUserId(Long userId) {
         return taskRepo.findAllByUserId(userId).orElse(Collections.emptyList());
     }
+
+    public void deleteTaskById(Long id) {
+        taskRepo.deleteById(id);
+    }
+
 }

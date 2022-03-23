@@ -8,45 +8,64 @@
 
     <link href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}"
           rel="stylesheet"/>
-</head>
-<body>
-<nav class="navbar bg-dark">
-    <div class="container align-items-baseline">
-        <a class="navbar-brand" href="#">ToDo</a>
-        <ul class="nav me-auto mb-2">
-            <li class="nav-item">
-                <a class="nav-link" href="#">My tasks</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Other</a>
-            </li>
 
-            <form class="d-flex" th:action="@{/logout}">
-                <button type="submit" class="btn btn-secondary" value="Log out">Log out</button>
-            </form>
+    <link href="../static/styles/style.css" rel="stylesheet" th:href="@{/styles/style.css}" type="text/css">
+</head>
+<body class="d-flex" style="height: 100vh">
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 300px">
+    <a class="navbar-brand d-flex align-items-center">
+        <img th:src="@{/images/logo.png}" alt=""/>
+        <span class="text-white">To Do</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-link text-white">My tasks</li>
+        <li class="nav-link text-white">Other</li>
+    </ul>
+    <hr>
+
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
+            <strong>User</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" style="">
+            <li><a class="dropdown-item" th:href="@{/mytasks}">My tasks</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
         </ul>
     </div>
-</nav>
+</div>
+<main class="d-flex flex-column ms-2 min-vh-100">
+    <h2 class="container mt-5 ">My tasks</h2>
 
-<h2 class="container mt-5">My tasks</h2>
-
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="task : ${tasks}">
-        <th scope="row">1</th>
-        <td th:text="${task.getName()}">test</td>
-        <td th:text="${task.getDescription()}">test</td>
-    </tr>
-    </tbody>
-</table>
-
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <th scope="row">1</th>
+            <td th:text="${task.getName()}">test</td>
+            <td th:text="${task.getDescription()}">test</td>
+            <td>
+                <form th:action="@{/mytasks/delete/{id}(id=${task.getId()})}" th:method="DELETE">
+                    <button class="btn btn-close" type="submit"></button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 <script src="../static/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
